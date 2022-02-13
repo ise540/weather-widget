@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.cities-block {
+  display: none;
+  border: 1px solid black;
+  width: fit-content;
+  cursor: pointer;
+  position: absolute;
+}
+.wrapper {
+  display: inline-block;
+  background-color: #255a5d;
+  padding: 10px;
+  width: 320px;
+  height: 150px;
+}
+
+.city {
+  color: #ffffff;
+}
+.widget {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  grid-gap: 5px;
+  height: 120px;
+}
+
+.image {
+  grid-row: 1/3;
+  width: 100px;
+  height: 100px;
+  align-self: center;
+  justify-self: center;
+}
+
+.temp {
+  font-size: 45px;
+  color: #00ffd5;
+  align-self: end;
+}
+.weather {
+  font-size: 20px;
+  color: #ffffff;
+  align-self: start;
+}
+
+button {
+  display: block;
+  border: 0;
+  background-color: #f9a603;
+  border-radius: 20px;
+  margin-bottom: 5px;
+  width:320px;
+  height: 35px;
+
+  font-size: 25px;
+
+  color: #f7efe2;
+
+  cursor: pointer;
+}
+button:hover {
+  background-color: #de7d91;
+}
+
+.input-field {
+  border: 0;
+  border-radius: 10px;
+  padding-left: 10px;
+
+  height: 40px;
+  margin-bottom: 15px;
+
+  font-size: 25px;
+}
+.cities-list {
+  background-color: #ffffff;
+
+  font-size: 25px;
+  margin-top: -15px;
+}
