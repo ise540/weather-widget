@@ -60,21 +60,7 @@ selectButton.addEventListener("click", (event) => {
       `http://api.openweathermap.org/data/2.5/weather?q=${input.value}&lang=ru&units=metric&appid=40c77c0f32a84cfb9ffd5516a4737983`
     );
     xhr.send();
-    xhr.addEventListener("readystatechange", () => {
-      if (xhr.readyState != 4) return;
-
-      if (xhr.status != 200) {
-        console.warn(xhr.status + ": " + xhr.statusText);
-      } else {
-        const json = JSON.parse(xhr.responseText);
-        createWidget(
-          json.name,
-          json.main.temp,
-          json.weather[0].description,
-          json.weather[0].icon
-        );
-      }
-    });
+    xhr.addEventListener("readystatechange", xhrHandler);
   }
 });
 
@@ -89,21 +75,25 @@ function success(pos) {
     `http://api.openweathermap.org/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&lang=ru&units=metric&appid=40c77c0f32a84cfb9ffd5516a4737983`
   );
   xhr.send();
-  xhr.addEventListener("readystatechange", () => {
-    if (xhr.readyState != 4) return;
+  xhr.addEventListener("readystatechange", xhrHandler);
+}
 
-    if (xhr.status != 200) {
-      console.warn(xhr.status + ": " + xhr.statusText);
-    } else {
-      const json = JSON.parse(xhr.responseText);
-      createWidget(
-        json.name,
-        json.main.temp,
-        json.weather[0].description,
-        json.weather[0].icon
-      );
-    }
-  });
+function xhrHandler(event) {
+  
+  if (event.target.readyState != 4) return;
+
+  if (event.target.status != 200) {
+    console.warn(event.target.status + ": " + event.target.statusText);
+  } else {
+    console.log(event.target.responseText);
+    const json = JSON.parse(event.target.responseText);
+    createWidget(
+      json.name,
+      json.main.temp,
+      json.weather[0].description,
+      json.weather[0].icon
+    );
+  }
 }
 
 function createWidget(name, temp, weather, icon) {
